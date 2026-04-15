@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学术报告：情绪交易与对冲基金收益 · 板块式</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+            background: linear-gradient(145deg, #eef4fc 0%, #d4e6f5 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 20px;
+        }
+
+        .presentation-container {
+            max-width: 1300px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-radius: 48px;
+            box-shadow: 0 25px 50px -10px rgba(0, 40, 80, 0.25);
+            padding: 28px 32px 40px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .title-section h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #0a2f5e;
+            letter-spacing: -0.01em;
+            text-shadow: 2px 2px 0 rgba(255,255,255,0.5);
+        }
+
+        .title-section .authors {
+            font-size: 1rem;
+            color: #1e4a7a;
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        .tab-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 20px 0 18px;
+            border-bottom: 3px solid #c6ddf2;
+            padding-bottom: 6px;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #1e4a7a;
+            border-radius: 40px 40px 0 0;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 0.3px;
+            backdrop-filter: blur(5px);
+            border: 1px solid transparent;
+        }
+
+        .tab-btn:hover {
+            background: #d9eafb;
+            color: #0a2f5e;
+        }
+
+        .tab-btn.active {
+            background: #ffffffdd;
+            color: #0a2f5e;
+            box-shadow: 0 -4px 8px #0a2f5e10, 0 8px 12px #0a2f5e15;
+            border: 1px solid #bdd3e8;
+            border-bottom: 3px solid #0a2f5e;
+            backdrop-filter: blur(8px);
+        }
+
+        .content-card {
+            background: #ffffffdd;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            background: linear-gradient(145deg, #ffffff 0%, #f2f9ff 100%);
+            border-radius: 36px;
+            padding: 36px 40px;
+            margin: 8px 0 12px;
+            box-shadow: inset 0 0 0 1px #ffffff, 0 20px 35px -8px #1e3f6040;
+            border: 1px solid #ffffff;
+            min-height: 540px;
+        }
+
+        .slide-content {
+            outline: none;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #0b2d4b;
+        }
+
+        .slide-content h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #0a2f5e;
+            margin-bottom: 24px;
+            border-left: 8px solid #1e6ec7;
+            padding-left: 24px;
+        }
+
+        .slide-content h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #1a4a7a;
+            margin: 28px 0 14px;
+        }
+
+        .slide-content h4 {
+            font-weight: 600;
+            color: #1e6ec7;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            font-size: 1.25rem;
+        }
+
+        .slide-content p {
+            margin-bottom: 16px;
+        }
+
+        .slide-content ul, .slide-content ol {
+            padding-left: 30px;
+            margin: 12px 0 20px;
+        }
+
+        .slide-content li {
+            margin-bottom: 8px;
+        }
+
+        .stat-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            background: #e7f0fa;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 6px 12px #00000008;
+        }
+
+        .stat-table th {
+            background: #0a2f5e;
+            color: white;
+            font-weight: 600;
+            padding: 14px 10px;
+            text-align: center;
+        }
+
+        .stat-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #bdd3e8;
+            text-align: center;
+            background: #f9fcff;
+        }
+
+        .badge {
+            background: #1e6ec7;
+            color: white;
+            border-radius: 30px;
+            padding: 4px 18px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        .ref {
+            font-style: italic;
+            color: #1e5a9b;
+            font-weight: 500;
+        }
+
+        .highlight {
+            background: #d4e6ff;
+            font-weight: 600;
+            color: #003366;
+            padding: 2px 10px;
+            border-radius: 30px;
+        }
+
+        .footer-note {
+            height: 10px;
+        }
+
+        @media (max-width: 700px) {
+            .presentation-container { padding: 16px; }
+            .content-card { padding: 24px 18px; }
+            .tab-btn { padding: 10px 16px; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="presentation-container">
+    <div class="header">
+        <div class="title-section">
+            <h1>📊 情绪交易与对冲基金收益</h1>
+            <div class="authors">Yong Chen · Bing Han · Jing Pan</div>
+        </div>
+    </div>
+
+    <div class="tab-bar">
+        <button class="tab-btn active" data-tab="intro">📌 一、引言与贡献</button>
+        <button class="tab-btn" data-tab="data">📁 二、数据与实证设计</button>
+        <button class="tab-btn" data-tab="results">📈 三、实证结果</button>
+        <button class="tab-btn" data-tab="skill">🧠 四、技能与择时</button>
+        <button class="tab-btn" data-tab="conclusion">🔚 五、结论与展望</button>
+    </div>
+
+    <div class="content-card">
+        <div class="slide-content" id="mainContent" contenteditable="true">
+            <!-- 动态渲染内容 -->
+        </div>
+    </div>
+
+    <div class="footer-note"></div>
+</div>
+
+<script>
+    const sections = {
+        intro: {
+            title: "引言与研究动机",
+            html: `
+                <h2>📌 引言：情绪波动中的对冲基金策略</h2>
+                <p><span class="badge">研究背景</span> 投资者情绪（“动物精神”）变化无常，既导致错误定价，又抑制套利活动。<br>
+                经典理论：<span class="ref">DeLong et al. (1990a,b)</span>，<span class="ref">Abreu & Brunnermeier (2002)</span>，<span class="ref">Dumas, Kurshev, Uppal (2009)</span>。</p>
+                
+                <h3>🔍 1. 为什么做这个研究？</h3>
+                <ul>
+                    <li><strong>研究缺口：</strong>以往文献聚焦情绪对资产价格的影响，但很少研究情绪如何影响<strong>套利者（对冲基金）的业绩</strong>。</li>
+                    <li><strong>核心问题：</strong>对冲基金在情绪波动下的策略分化——有些基金“逆向押注错误定价”（负情绪beta），有些则“骑乘泡沫/提前布局”（正情绪beta）。哪种策略表现更优？</li>
+                    <li>直接检验情绪beta与对冲基金未来收益的关系，并探究背后的机制（风险补偿 vs. 管理技能）。</li>
+                </ul>
+
+                <h3>💡 2. 研究的重要性</h3>
+                <ul>
+                    <li>对冲基金被视为最接近“理性套利者”的群体 (<span class="ref">Brunnermeier & Nagel 2004</span>)，理解其情绪交易行为对资产定价、市场稳定有重要意义。</li>
+                    <li>揭示新的业绩来源：以往文献多关注市场/波动/流动性择时，本文首次系统提出并验证<strong>“情绪择时(sentiment timing)”</strong>能力。</li>
+                    <li>对投资者：帮助识别能够从情绪波动中获利的基金，优化配置。</li>
+                </ul>
+
+                <h3>✨ 3. 创新性</h3>
+                <ul>
+                    <li><strong>首次</strong>构建对冲基金层面的情绪beta，并发现其与未来收益显著正相关（高beta基金每月alpha高出0.59%）。</li>
+                    <li>提出并检验<strong>情绪择时模型</strong>（基于Henriksson-Merton框架），发现约10%基金具有显著正向情绪择时能力。</li>
+                    <li>将“骑乘泡沫”行为从科技泡沫期间(<span class="ref">Brunnermeier & Nagel 2004</span>)拓展到1994–2018全样本，证实其普遍性。</li>
+                </ul>
+
+                <h3>📚 4. 理论贡献 & 关键文献</h3>
+                <ul>
+                    <li>扩展了情绪与套利限制文献：<span class="ref">Baker & Wurgler (2006,2007)</span> 情绪指数，<span class="ref">Stambaugh, Yu, Yuan (2012,2015)</span> 错误定价。</li>
+                    <li>与“理性泡沫骑乘”理论呼应：<span class="ref">DeLong et al. (1990b)</span>，<span class="ref">Abreu & Brunnermeier (2002)</span>；实证上衔接<span class="ref">Brunnermeier & Nagel (2004)</span>。</li>
+                    <li>贡献于对冲基金技能研究：区别于<span class="ref">Titman & Tiu (2011)</span> 的R²技能测度，本文强调情绪维度的能力。</li>
+                    <li>指出情绪beta-收益关系主要源于技能而非情绪风险溢价。</li>
+                </ul>
+                <p style="margin-top:20px;"><em>“我们发现有技能的对冲基金通过预测和利用情绪变化获得高收益，而不仅仅是押注错误定价的反转。”</em></p>
+            `
+        },
+        data: {
+            title: "数据与实证设计",
+            html: `
+                <h2>📁 2.1 数据来源、变量与描述性统计</h2>
+                <h4>🔹 对冲基金数据</h4>
+                <ul>
+                    <li><strong>Lipper TASS数据库</strong> (1994–2018)，包含存续与清算基金，避免幸存者偏差。</li>
+                    <li>筛选：权益导向（剔除新兴市场、固定收益、管理期货等）；剔除前12个月回报(回填偏差)；要求月频赎回、AUM≥5百万美元、至少30个收益观测。最终样本：<strong>4,073只基金</strong>。</li>
+                </ul>
+                <h4>🔹 情绪变化指标</h4>
+                <ul>
+                    <li>主指标：<strong>Baker-Wurgler 情绪变化指数</strong> (BW ΔSentiment)，基于6个情绪代理变量第一主成分，已正交化宏观变量。</li>
+                    <li>替代指标：密歇根消费者信心指数变化、FEARS指数(Da, Engelberg, Gao 2015)。</li>
+                </ul>
+                <h4>🔹 风险因子与控制变量</h4>
+                <ul>
+                    <li>Fung-Hsieh七因子、动量因子、 Pastor-Stambaugh流动性因子、通胀、违约利差。</li>
+                </ul>
+                <h4>📊 描述性统计</h4>
+                <table class="stat-table">
+                    <tr><th>变量</th><th>均值</th><th>中位数</th><th>标准差</th></tr>
+                    <tr><td>基金收益 (%/月)</td><td>0.59</td><td>0.61</td><td>3.36</td></tr>
+                    <tr><td>AUM ($百万)</td><td>181.5</td><td>56.0</td><td>365.6</td></tr>
+                    <tr><td>基金年龄 (月)</td><td>80.7</td><td>67.0</td><td>57.2</td></tr>
+                    <tr><td>管理费 (%)</td><td>1.35</td><td>1.50</td><td>0.50</td></tr>
+                    <tr><td>激励费 (%)</td><td>15.05</td><td>20.0</td><td>7.41</td></tr>
+                    <tr><td>高水位线 (比例)</td><td>0.67</td><td>1.00</td><td>0.47</td></tr>
+                </table>
+                <p>情绪变化指数均值-0.50，标准差1.39，与市场、规模因子相关性较低（最高0.22）。</p>
+
+                <h2 style="margin-top:30px;">⚙️ 2.2 实证设计方案</h2>
+                <ul>
+                    <li><strong>情绪beta估计：</strong>每月对每个基金用过去36个月滚动回归：<br>
+                    <code>r<sub>i,t</sub> = α + β<sup>S</sup>·ΔSentiment<sub>t</sub> + β'·f<sub>t</sub> + ε<sub>t</sub></code> ，控制前述因子。</li>
+                    <li><strong>投资组合排序：</strong>每月按情绪beta分成10等权组合，计算下月收益与alpha（用Fung-Hsieh七因子+动量+流动性调整）。</li>
+                    <li><strong>Fama-MacBeth回归：</strong>横截面检验beta与未来收益/alpha的关系，控制基金特征(规模、年龄、费用、高水位线等)。</li>
+                    <li><strong>情绪择时检验：</strong>基于Henriksson-Merton (1981)模型，引入可交易情绪因子(SentFactor)与虚拟变量交互项，捕捉择时系数γ。</li>
+                    <li><strong>Bootstrap分析：</strong>检验择时系数显著性(考虑残差IID/序列相关/截面相关)。</li>
+                </ul>
+            `
+        },
+        results: {
+            title: "实证结果与解读",
+            html: `
+                <h2>📈 主要实证发现</h2>
+                <h3>① 情绪beta与基金业绩显著正相关</h3>
+                <ul>
+                    <li>最高beta组(第10组)平均月超额收益0.58% (t=3.48)，alpha达0.51% (t=2.98)；最低beta组alpha为-0.08% (t=-0.51)。</li>
+                    <li>多空组合(H-L) 月alpha <span class="highlight">0.59% (t=3.55)</span>，经济意义显著。</li>
+                    <li>Fama-MacBeth回归：情绪beta系数0.14~0.17 (t>3.0)，控制风格与特征后依然稳健。</li>
+                </ul>
+                <table class="stat-table">
+                    <tr><th>Portfolio</th><th>Sentiment Beta</th><th>超额收益(%)</th><th>Alpha(%)</th></tr>
+                    <tr><td>1 (低)</td><td>-1.07</td><td>0.27</td><td>-0.08</td></tr>
+                    <tr><td>10 (高)</td><td>0.96</td><td>0.58</td><td>0.51</td></tr>
+                    <tr><td>10-1 差值</td><td>2.03</td><td>0.31***</td><td>0.59***</td></tr>
+                </table>
+
+                <h3>② 技能解释强于风险溢价</h3>
+                <ul>
+                    <li>控制可交易情绪因子后，高-低alpha仅从0.59%微降至0.56% (t=3.54)，说明并非简单持有高情绪beta股票。</li>
+                    <li>按Titman-Tiu (2011) R²划分技能：高技能基金中高-低alpha达<strong>0.71% (t=4.02)</strong>，低技能组仅0.46% (t=2.30)。</li>
+                    <li>拥有高水位线、高激励费、更长锁定期基金中，情绪beta效应更强。</li>
+                </ul>
+
+                <h3>🎯 ③ 情绪择时能力</h3>
+                <ul>
+                    <li>约<strong>13.8%</strong>的对冲基金呈现正向情绪择时系数(t>1.65)，仅2.8%为负。</li>
+                    <li>Bootstrap模拟（三种方法）均拒绝“纯运气”假设，右尾p值<0.05。</li>
+                    <li>情绪择时系数与情绪beta正相关，且对未来收益有增量预测力。</li>
+                </ul>
+
+                <h3>📉 ④ 情绪水平的作用</h3>
+                <ul>
+                    <li>高情绪期后，高beta基金alpha为0.59% (低beta为-0.14%)，多空alpha <strong>0.73% (t=3.59)</strong>；低情绪期后多空alpha仅0.38% (t=1.50)。</li>
+                    <li>与传统“押注错误定价”观点相悖，说明高beta策略在高情绪环境中更有利。</li>
+                </ul>
+                <p>✅ 稳健性：替换为密歇根情绪、FEARS指数；使用总收益(gross return)均得到一致结论。</p>
+            `
+        },
+        skill: {
+            title: "技能与情绪择时深度分析",
+            html: `
+                <h2>🧠 技能子样本 & 情绪择时结果</h2>
+                <h4>📋 Panel A: 按Titman-Tiu技能分组 (高技能 vs 低技能)</h4>
+                <table class="stat-table">
+                    <tr><th>组别</th><th>高技能基金: H-L Alpha</th><th>低技能基金: H-L Alpha</th></tr>
+                    <tr><td>超额收益差</td><td>0.41% (t=4.07)</td><td>0.25% (t=2.07)</td></tr>
+                    <tr><td>Alpha差</td><td>0.71% (t=4.02)</td><td>0.46% (t=2.30)</td></tr>
+                </table>
+                <p>高技能基金中情绪beta溢价更显著，支持技能解释。</p>
+
+                <h4>📊 Panel B: 按基金特征分组 (高/低组别下的H-L Alpha)</h4>
+                <table class="stat-table">
+                    <tr><th>特征</th><th>高特征组 Alpha差</th><th>低特征组 Alpha差</th></tr>
+                    <tr><td>基金规模</td><td>0.73% (t=4.38)</td><td>0.53% (t=2.76)</td></tr>
+                    <tr><td>管理费</td><td>0.71% (t=3.97)</td><td>0.29% (t=1.15)</td></tr>
+                    <tr><td>激励费</td><td>0.65% (t=3.73)</td><td>0.36% (t=2.37)</td></tr>
+                    <tr><td>高水位线</td><td>0.61% (t=3.23)</td><td>0.26% (t=1.31)</td></tr>
+                </table>
+                
+                <h4>⏱️ 情绪择时系数分布 (bootstrap验证)</h4>
+                <ul>
+                    <li>13.8% 基金 t(γ) > 1.65 (右尾)，仅2.8% < -1.65。</li>
+                    <li>经IID bootstrap、序列相关bootstrap、Fama-French截面bootstrap后，右尾p值均<0.05，表明非运气所致。</li>
+                </ul>
+                <p>情绪择时系数与下月alpha显著正相关 (Fama-MacBeth系数0.01~0.02, t>2.3)。</p>
+                <p>综上，技能(尤其情绪择时)是高情绪beta基金超额收益的重要来源。</p>
+                
+                <h4 style="margin-top:20px;">🔬 情绪择时模型</h4>
+                <p>基于Henriksson-Merton (1981): <br>
+                <code>r<sub>i,t</sub> = α + β<sup>S</sup>ΔSentiment<sub>t</sub> + γ·SentFactor<sub>t</sub>·I(SentFactor<sub>t</sub>>mean) + β'f<sub>t</sub> + ε</code><br>
+                系数γ捕捉情绪择时能力，γ>0表示基金在情绪因子收益高时增加暴露。</p>
+            `
+        },
+        conclusion: {
+            title: "结论与未来展望",
+            html: `
+                <h2>🔚 研究结论</h2>
+                <ul>
+                    <li><strong>情绪beta正向预测对冲基金收益：</strong>高情绪beta基金月alpha比低beta基金高0.59%，结果稳健。</li>
+                    <li><strong>技能驱动而非风险补偿：</strong>控制情绪风险因子后alpha几乎不变；高技能基金效应更强；存在显著的情绪择时能力。</li>
+                    <li><strong>情绪择时：</strong>约10%基金能提前布局情绪上涨，其情绪beta更高、业绩更好。这与“骑乘泡沫”逻辑一致（Brunnermeier & Nagel 2004）。</li>
+                    <li>高情绪期后，高beta基金表现尤其突出，挑战传统“逆向套利”观点。</li>
+                </ul>
+                <h2>🚩 未来研究方向</h2>
+                <ul>
+                    <li>获取对冲基金详细持仓数据，进一步揭示情绪交易策略的微观机制。</li>
+                    <li>深入探究市场整体情绪风险的定价（情绪beta在股票横截面的收益关系仍存争议）。</li>
+                    <li>拓展至其他资产类别(债券、外汇)的情绪暴露与基金绩效。</li>
+                    <li>情绪择时能力的来源：是预测情绪变化还是利用行为偏误？</li>
+                </ul>
+                <p style="margin-top: 30px; background: #e3f0ff; padding: 22px; border-radius: 28px; font-size:1.08rem;">
+                📌 核心贡献：揭示了“情绪交易”是对冲基金重要的超额收益来源，丰富了套利者行为与投资者情绪文献。有技能的套利者不仅纠正错误定价，更善于“乘风破浪”。
+                </p>
+                <p style="text-align:right"><em>—— Chen, Han, Pan, The Journal of Finance</em></p>
+            `
+        }
+    };
+
+    const contentDiv = document.getElementById('mainContent');
+    const tabBtns = document.querySelectorAll('.tab-btn');
+
+    function switchTab(tabId) {
+        tabBtns.forEach(btn => {
+            if (btn.dataset.tab === tabId) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+        contentDiv.innerHTML = sections[tabId].html;
+    }
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const tabId = btn.dataset.tab;
+            switchTab(tabId);
+        });
+    });
+
+    switchTab('intro');
+</script>
+</body>
+</html>
